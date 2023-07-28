@@ -1,8 +1,8 @@
-from utils import get_device, set_seed, model_summary
-from utils.experiment import Experiment
-from utils.backprop import Train, Test
-from models import ResNet18, ResNet34
-from datasets import CIFAR10
+from .utils import get_device, set_seed, model_summary
+from .utils.experiment import Experiment
+from .utils.backprop import Train, Test
+from .models import ResNet18, ResNet34
+from .datasets import CIFAR10
 
 set_seed()
 batch_size = 32
