@@ -61,7 +61,7 @@ class GenericDataset(ABC):
         train_transforms = self._fetch_train_transforms()
 
         train_data = self.name(
-            root=os.path.join(self.kwargs['data_path'], 'data'),
+            root=os.path.join(self.kwargs.get('data_path', './'), 'data'),
             train=True,
             download=True,
             alb_transform=train_transforms
@@ -87,7 +87,7 @@ class GenericDataset(ABC):
         test_transforms = self._fetch_test_transforms()
 
         test_data = self.name(
-            root=os.path.join(self.kwargs['data_path'], 'data'),
+            root=os.path.join(self.kwargs.get('data_path', './'), 'data'),
             train=False,
             download=True,
             alb_transform=test_transforms
