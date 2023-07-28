@@ -20,4 +20,8 @@ setup(
         'grad-cam==1.4.8',
         'ttach==0.0.3'
     ],
+    author='Udaya Sai Chikka',
+    description='A simple PyTorch trainer',
+    license='MIT',
+    keywords='pytorch trainer'
 )
