@@ -18,7 +18,10 @@ class MNISTAlbument(datasets.MNIST):
         return img, target
     
     def __str__(self):
-        return "MNIST"
+        return "MNIST Albumentations"
+    
+    def __repr__(self) -> str:
+        return "MNIST Albumentations"
     
 class MNIST(GenericDataset):
 
@@ -29,3 +32,9 @@ class MNIST(GenericDataset):
         A.Rotate(limit=7, p=1.),
         A.Perspective(scale=0.2, p=0.5, fit_output=False)
     ]
+
+    def __str__(self):
+        return "MNIST"
+    
+    def __repr__(self) -> str:
+        return "MNIST"

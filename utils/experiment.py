@@ -87,28 +87,37 @@ class Experiment(object):
     def show_incorrect(self, number=20, cams=False, figure_size=(4, 5)):
         self.get_incorrect_preds()
 
-        fig = plt.figure(figsize=figure_size)
+        images = list()
+        labels = list()
+
         for i in range(number):
-            ax = fig.add_subplot(4, 5, i + 1, xticks=[], yticks=[])
             image = self.incorrect_preds["images"][i]
-            label = self.incorrect_preds["ground_truths"][i]
             pred = self.incorrect_preds["predicted_vals"][i]
+            truth = self.incorrect_preds["ground_truths"][i]
 
             if cams:
-                image = self.get_cam_visualisation(image, label)
+                image = self.get_cam_visualisation(image, pred)
             else:
                 image = self.dataset.get_transform(image).cpu()
 
-            label = label.item()
-            pred = pred.item()
-            ax.imshow(image, cmap="gray")
-            ax.set_title(
-                f"Actual {label}: {self.dataset.classes[label]} vs Predicted {pred}: {self.dataset.classes[pred]}"
-            )
-            
+            if self.dataset.classes is not None:
+                pred = f'{pred}:{self.dataset.classes[pred]}'
+                truth = f'{truth}:{self.dataset.classes[truth]}'
+            label = f'Pedicted - {pred} vs Actual - {truth}'
+
+            images.append(image)
+            labels.append(label)
+
+        fig = plt.figure(figsize=figure_size)
+        for i in range(number):
+            ax = fig.add_subplot(4, 5, i + 1, xticks=[], yticks=[])
+            ax.imshow(images[i])
+            ax.set_title(labels[i])
+
         fig.suptitle(f"Incorrect Predictions for {self.dataset.name}", fontsize=20)
-        fig.tight_layout()
         plt.show()
+
+        
 
     def plot_stats(self):
 

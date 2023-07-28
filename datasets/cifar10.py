@@ -19,7 +19,10 @@ class CIFAR10Albument(datasets.CIFAR10):
         return img, target
     
     def __str__(self):
-        return "CIFAR10"
+        return "CIFAR10 Albumentations"
+    
+    def __repr__(self) -> str:
+        return "CIFAR10 Albumentations"
     
 class CIFAR10(GenericDataset):
 
@@ -35,3 +38,9 @@ class CIFAR10(GenericDataset):
         A.CoarseDropout(max_holes=1, max_height=16, max_width=16, fill_value=0, p=1),
         A.CenterCrop(32, 32, p=1)
     ]
+
+    def __str__(self):
+        return "CIFAR10"
+    
+    def __repr__(self) -> str:
+        return "CIFAR10"

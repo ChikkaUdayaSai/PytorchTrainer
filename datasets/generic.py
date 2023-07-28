@@ -106,16 +106,11 @@ class GenericDataset(ABC):
 
     def denormalize(self, t):
 
-        if not isinstance(t, torch.Tensor):
-            t = torch.tensor(t)
-
-        if not self.normalize:
-            return t
-
-        mean = torch.tensor(self.mean).reshape(3, 1, 1)
-        std = torch.tensor(self.std).reshape(3, 1, 1)
-
-        return (t * std) + mean
+        result = torch.tensor(t, requires_grad=False)
+        if self.normalize:
+            for t, m, s in zip(result, self.mean, self.std):
+                t.mul_(s).add_(m)
+        return result
     
     def get_classes(self):
             
