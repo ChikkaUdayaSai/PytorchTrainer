@@ -1,5 +1,5 @@
 import torch
-from torchsummary import summary
+import torchinfo
 
 SEED = 42
 DEVICE = None
@@ -24,4 +24,15 @@ def set_seed(seed=SEED):
         torch.cuda.manual_seed(seed)
 
 def model_summary(model, input_size):
-    return summary(model, input_size=input_size)
+    return torchinfo.summary(
+        model,
+        input_size=input_size,
+        depth=5,
+        col_names=[
+            "input_size", 
+            "output_size", 
+            "num_params", 
+            "params_percent"
+        ]
+    )
+    

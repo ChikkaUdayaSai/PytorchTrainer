@@ -29,6 +29,9 @@ class GenericDataset(ABC):
 
         self._load_dataset()
 
+    def __str__(self):
+        return "Generic Dataset"
+
     def _load_dataset(self):
 
         print(f"Loading {self.name} dataset...")
@@ -149,7 +152,7 @@ class GenericDataset(ABC):
                 f"{label}: {self.classes[label]}"
             )
 
-        fig.suptitle(f"Dataset Examples for {self.name}", fontsize=20)
+        fig.suptitle(f"Dataset Examples for {self}", fontsize=20)
         fig.tight_layout()
         plt.show()
 
