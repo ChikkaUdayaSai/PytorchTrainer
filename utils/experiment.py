@@ -90,7 +90,9 @@ class Experiment(object):
         fig = plt.figure(figsize=figure_size)
         for i in range(number):
             ax = fig.add_subplot(4, 5, i + 1, xticks=[], yticks=[])
-            image, label, pred = self.incorrect_preds[i]
+            image = self.incorrect_preds["images"][i]
+            label = self.incorrect_preds["ground_truths"][i]
+            pred = self.incorrect_preds["predicted_vals"][i]
 
             if cams:
                 image = self.get_cam_visualisation(image, label)
