@@ -101,7 +101,7 @@ class Experiment(object):
             pred = pred.item()
             ax.imshow(image, cmap="gray")
             ax.set_title(
-                f"{label}: Actual {self.dataset.classes[label]}\n Predicted {pred}: {self.dataset.classes[pred]}"
+                f"Actual {label}: {self.dataset.classes[label]} vs Predicted {pred}: {self.dataset.classes[pred]}"
             )
             
         fig.suptitle(f"Incorrect Predictions for {self.dataset.name}", fontsize=20)
@@ -109,9 +109,22 @@ class Experiment(object):
         plt.show()
 
     def plot_stats(self):
+
+        # plot both train and test together
+
         fig, axs = plt.subplots(1, 2, figsize=(15, 5))
-        axs[0].plot(self.train.train_losses)
-        axs[0].set_title("Training Loss")
-        axs[1].plot(self.train.train_accuracies)
-        axs[1].set_title("Training Accuracy")
-        
+        axs[0].plot(self.train.train_losses, label='Train')
+        axs[0].plot(self.test.test_losses, label='Test')
+        axs[0].set_title("Loss")
+        axs[0].legend()
+
+        axs[1].plot(self.train.train_accuracies, label='Train')
+        axs[1].plot(self.test.test_accuracies, label='Test')
+        axs[1].set_title("Accuracy")
+        axs[1].legend()
+
+        fig.suptitle(f"Stats for {self.dataset.name}", fontsize=20)
+        fig.tight_layout()
+        plt.show()
+
+
