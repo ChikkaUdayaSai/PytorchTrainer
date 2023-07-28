@@ -121,18 +121,15 @@ class GenericDataset(ABC):
         return self.num_classes
     
     def get_transform(self, image):
-            
-        if not isinstance(image, torch.Tensor):
-            image = torch.tensor(image)
-        
+
         if self.normalize:
             image = self.denormalize(image)
         
         if len(self.mean) == 3:
-            image = image.permute(1, 2, 0).numpy()
+            image = image.permute(1, 2, 0)
             return image
         else:
-            return image.squeeze().numpy()
+            return image.squeeze(0)
         
     def display_examples(self, figure_size=(10, 10), num_images=25):
 
