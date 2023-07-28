@@ -12,7 +12,7 @@ setup(
         'torchsummary==1.5.1',
         'albumentations==1.2.1',
         'torchinfo==1.8.0',
-        'tqdm== 4.65.0',
+        'tqdm==4.65.0',
         'numpy==1.22.4',
         'opencv-python==4.7.0.72',
         'torch-lr-finder==0.2.1',

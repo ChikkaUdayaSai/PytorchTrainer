@@ -7,7 +7,7 @@ The Pytorch Trainer is a simple framework for training neural networks in Pytorc
 The Pytorch Trainer can be installed directly from github using pip:
 
 ```bash
-pip install git+https://github.com/ChikkaUdayaSai/pytorch-trainer.git
+pip install git+https://github.com/ChikkaUdayaSai/PytorchTrainer.git
 ```
 
 ## Usage
