@@ -81,7 +81,7 @@ class Experiment(object):
         # In this example grayscale_cam has only one image in the batch:
         grayscale_cam = grayscale_cam[0, :]
 
-        output = show_cam_on_image(self.dataset.show_transform(input_tensor).cpu().numpy(), grayscale_cam, use_rgb=True)
+        output = show_cam_on_image(self.dataset.get_transform(input_tensor).cpu().numpy(), grayscale_cam, use_rgb=True)
         return output
 
     def show_incorrect(self, number=20, cams=False, figure_size=(4, 5)):
@@ -101,9 +101,9 @@ class Experiment(object):
                 image = self.dataset.get_transform(image).cpu()
 
             if self.dataset.classes is not None:
-                pred = f'{pred}:{self.dataset.classes[pred]}'
-                truth = f'{truth}:{self.dataset.classes[truth]}'
-            label = f'Pedicted - {pred} vs Actual - {truth}'
+                pred = f'{self.dataset.classes[pred]}'
+                truth = f'{self.dataset.classes[truth]}'
+            label = f'Pred:{pred}^Act:{truth}'
 
             images.append(image)
             labels.append(label)
