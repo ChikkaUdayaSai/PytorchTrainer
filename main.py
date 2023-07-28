@@ -16,7 +16,7 @@ def get_cifar10_dataset_and_resnet18_model():
     return dataset, model
 
 def create_resnet18_experiment(epochs=20, criterion='crossentropy', scheduler='one_cycle'):
-    model, dataset = get_cifar10_dataset_and_resnet18_model()
+    dataset, model = get_cifar10_dataset_and_resnet18_model()
     return Experiment(model, dataset, epochs=epochs, scheduler=scheduler, criterion=criterion)
 
 def create_resnet34_experiment(epochs=20, criterion='crossentropy', scheduler='one_cycle'):
