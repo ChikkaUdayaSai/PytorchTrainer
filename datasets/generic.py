@@ -69,7 +69,7 @@ class GenericDataset(ABC):
 
         if self.classes is None:
             self.classes = {
-                {i: c for i, c in enumerate(train_data.classes)}
+                i: c for i, c in enumerate(train_data.classes)
             }
         self.num_classes = len(self.classes)
 
